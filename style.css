@@ -1,8 +1,9 @@
+/* PADRAO VERSAO DESKTOP */
 .title{
-    justify-self: left;
-    position: absolute;
+    position: relative;
     margin-left: 145px;
-    display: flex;
+    display: contents;
+    font-size: 6vh;
 }
 .logo{
     margin-left: 40px;
@@ -13,7 +14,6 @@
 
 header{
     background-color: #E0E0E0;
-    font-size: 25px;
     text-align: center;
     display: flex;
     height: 80px;
@@ -26,12 +26,9 @@ header{
     background: rgb(255, 255, 255);
     border-radius: 2px;
     display: flex;
-    justify-content:space-between;
-    justify-items: self-end;
-    height: 20px;
-    padding: 5px;
-    margin-right: 100px;
-    font-size: 13px;    
+    font-size: 13px; 
+    border: 4px solid white;   
+    margin-right: 40px;
 }
 nav, a{
     color: black;
@@ -40,7 +37,8 @@ nav, a{
 .lkbord{
     border-left: 1px solid black;
     border-right: 1px solid black;
-    padding: 5px;
+    padding-right: 5px;
+    padding-left: 5px;
 }
 
 a:hover{
@@ -52,66 +50,286 @@ body{
        background-color: rgb(255, 255, 255);
        font-family: 'Lato', sans-serif;
     }
-    form{
-        display: flex;
-        flex-direction: column;
-    }
-    .box1{
-        border: 2px solid gainsboro;
-        border-radius: 5px;
-        width: 400px;
-        position: relative;
-        padding: 20px;
+form{
+    display: flex;
+    flex-direction: column;
+}
+.box1{
+    border: 2px solid gainsboro;
+    border-radius: 5px;
+    width: 30%;
+    position: relative;
+    padding: 20px;
+    margin-left: 40px;
+    display: flex;
+    flex-direction: column;
+}
+.formu{
+    display: inline-grid;
+}
+.box2{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin-right: 40px;
+}
+.content{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 50px;
+}
+h2{
+    text-align: center;
+    font-size: medium;
+}
+button{
+    background-color: #333333;
+    color: white;
+    margin-top: 15px;
+    border: none;
+    border-radius: 3px;
+    line-height: 2;
+    width: 100%;
+}
+button:hover{
+    filter: brightness(2);
+    transition: 2s;
+}
+.btn{
+    width: 100%;
+    display: flex;
+}
+label{
+    font-size: small;
+    padding-top: 12px;  
+}
+input, select{
+    border: 1px solid #999999;
+    border-radius: 3px;
+    height: 28px;
+}
+th, td{
+    border-bottom: 1px solid rgb(131, 131, 131);
+    text-align: left;
+    padding-top: 5px;
+    font-size: small;
+}
+tr{
+    line-height: 2;    
+}
+.total{
+    border-top: 1px solid rgb(131, 131, 131);
+    border-bottom: 0px solid rgb(131, 131, 131);
+    font-weight: bold;
+}
+nav{
+    font-family:'Lato', sans-serif;
+    font-size: small;
+    border: 6px solid white;
+}
+span{
+    margin-left: 40px;
+}
+.menu{
+    display: none;
+    
+}
+#name{
+        filter: drop-shadow(2px 2px 2px #002fff);
+        font-variant-caps: petite-caps;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: #2196f385;
+        font-style: italic;
+        font-size: 3vw;
+}
+.endt, #endt{
+    text-align: end;
+}
+.sidenav{
+    display: none;
+}
 
-    }
-    .box2{
-        width: 700px;
-        display: flex;
-        flex-direction: column;
-        position: relative;
-    }
-    .content{
-        display: flex;
-        justify-content: space-around;
-        margin-top: 50px;
-    }
-    h2{
-        text-align: center;
-        font-size: medium;
-    }
-    button{
-        background-color: #333333;
-        color: white;
-        margin-top: 5px;
-        border: none;
-        border-radius: 3px;
-    }
-    label{
-        font-size: small;
-        padding-top: 10px;  
-    }
-    input, select{
-        border: 1px solid rgb(197, 197, 197);
-        border-radius: 3px;
+/* FONTE IMPORTADA */
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap');
+
+/* RESPONSIVO PARA TABLET */
+    @media (max-width: 780px){
+        .sidenav {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 0.4;
+            top: 0;
+            right: 0;
+            background-color: #333333;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+            display: flow-root;
+          }
+          
+          .sidenav a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 16px;
+            color: #ffffff;
+            display: block;
+            flex-direction: column;
+            transition: 0.1s;
+            display: block;
+            text-align: right;
+            font-weight: 600;
+          }
+          
+          .sidenav a:hover {
+            color: #333333;
+            background-color: #c4c4c4;
+          }
+          
+          .sidenav .closebtn {
+            position: absolute;
+            top: 0;
+            right: 90%;
+            font-size: 36px;
+          }
+
+        .title{
+            font-size: 5vw;
+            font-weight: 600;
+        }
+        .menu{
+            display: flex;
+            cursor:pointer
+        }
+        nav, .linker{
+            display: none;
+            visibility: hidden;
+        }
+        .content{
+            flex-wrap: wrap;
+            
+        }
+        .box1{
+            border: 2px solid gainsboro;
+            border-radius: 5px;
+            width: 90%;
+            position: relative;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            align-self: center;
+        }
+
+        .formu{
+            display: flex;
+            flex-direction: column;
+        }
+        select{
+            height: 32px;
+        }
+        #namerc{
+            width: 40%;
+        }
         
+        .box2{
+            width: 97%;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            align-self: center;
+            margin: auto;
+            margin-top: 20px;
+        }
+        form{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+        button{
+            width: 30%;
+        }
+        .btn{
+            justify-content: flex-end;
+        }
+        #valor{
+            margin: 0px;
+        }
+
+        
+}
+/* RESPONSIVO VERSAO SMARTPHONE */
+    @media (max-width: 520px){
+        body{
+            background-color: rgb(255, 255, 255);
+            margin: 0px;
+        }
+        .logo{
+            width: 30px;
+            height: 27px;
+            margin-left: 22px;
+        }
+        header{
+            display: flex;
+            width: 100%;
+            height: 60px;
+            justify-content: space-between;
+            filter: drop-shadow(0px -12px 16px black);
+        }
+        nav, .linker{
+            display: none;
+            visibility: hidden;
+        }
+        .content{
+            width: 97%;
+            margin-top: 0px;
+            flex-wrap: wrap;
+            margin: auto;
+        }
+        .box1, .box2{
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            padding:0px;
+        }
+        .box1{
+            border: none;
+            display: flex;
+        }
+        .box2{
+            margin-top: 20px;
+            border-top: 1px solid black;
+        }
+        .box1 h2{
+            visibility: hidden;
+        }
+        input, select{
+            height: 32px;
+        }
+        label{
+            margin-bottom: 4px;
+        }
+        button {
+            height: 32px;
+            width: 100%;
+        }
+        .btn{
+            width: 100%;
+            display: flex;
+        }
+        
+        form{
+            display: flex;
+            flex-direction: column;
+            margin: 0px;
+        }
+        .formu{
+            margin: 0px;
+            width: 100%;
+        }
+        #namerc{
+            width: 100%;
+        }
     }
-    th, td{
-        border-bottom: 1px solid rgb(131, 131, 131);
-        text-align: left;
-        padding-top: 5px;
-        font-size: small;
-    }
-    .total{
-        border-top: 1px solid rgb(131, 131, 131);
-        border-bottom: 0px solid rgb(131, 131, 131);
-        font-weight: bold;
-    }
-    nav{
-        font-family:'Lato', sans-serif;
-        font-size: small;
-        margin: 1px 1px 14px 1px;
-    }
-    span{
-        margin-left: 40px;
-    }
-    @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap');
+   

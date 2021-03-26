@@ -5,66 +5,129 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Via Varejo</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="icon" href="Ellipse 13.png" type="image/gif" sizes="16x16">
     <link rel='stylesheet' type='text/css' media='screen' href='style.css'>
     
 </head>
 <body>
-   
-        <header>
-            <img class="logo" src="Ellipse 13.png">
-            <div class="title">Controle Financeiro</div>
-            <div class="linker">
-                <nav>
-                    <a href="#">Limpar dados</a>
-                    <a href="#" class="lkbord">Cadastro de transações</a>
-                    <a href="#">Salvar no servidor</a>
-                </nav>
-            </div>
-            <!-- <img src="menu-24px.svg"> -->
-        </header>
-        
+  <!-- CABEÇALHO -->
+  <header>
+    <img class="logo" src="Ellipse 13.png">
+    <div class="title">Controle Financeiro</div>
+    <div class="linker">
+      <nav>
+        <a href="#">Limpar dados</a>
+        <a href="#" class="lkbord">Cadastro de transações</a>
+        <a href="#">Salvar no servidor</a>
+      </nav>
+    </div>
+
+    <img class="menu" src="menu-24px.svg" onclick="openNav()">
+  
+  </header>
+  <!-- <h1 id="name"></h1>
+  <div id="sidebar"></div> -->
+  
+  <!-- DIV QUE ENGLOBA A BOX FORMULARIO E A BOX EXTRATO -->
         <div class="content">
+          <!-- DIV FORMULARIO -->
         <div class="box1">
             <h2>Nova Transação</h2>
-            <form>
+            <form method="POST">
+
+              <div class="formu">  
                 <label>Tipo de Transação</label>
-                <select>
-                    <option>Compra</option>
-                    <option>Venda</option>
+                <select required>
+                  <option>Compra</option>
+                  <option>Venda</option>
                 </select>
+              </div>
+
+              <div class="formu" id="namerc">
                 <label>Nome da Mercadoria</label>
-                <input></input>
+                <input placeholder="Mercadoria" type="text" required></input>
+              </div>
+
+              <div class="formu" id="valor">
                 <label>Valor</label>
-                <input type="number" value="0,00"></input>
-                <button>Adicionar Transação</button>
+                <input type="number" placeholder="R$0,00" required></input>
+              </div>
             </form>
+            <div class="btn">
+              <button>Adicionar Transação</button>
+            </div>
         </div>
-            
+            <!-- DIV EXTRATO -->
         <div class="box2">
             <h2>Extrato de Transação</h2>
             <table>
                 <tr>
                   <th>Mercadoria</th>
-                  <th>Valor</th>
+                  <th class="endt">Valor</th>
                 </tr>
                 <tr>
                   <td>+ Lorem ipsum dolor sit amet consectetur</td>
-                  <td>R$ 12.999,99</td>
+                  <td class="endt">R$ 12.999,99</td>
                 </tr>
                 <tr>
                   <td>- Quis nostrud exercitation</td>
-                  <td>R$ 99,99</td>
+                  <td class="endt">R$ 99,99</td>
                 </tr>
                 <tr>
                   <td>+ Lorem ipsum </td>
-                  <td>R$ 9,99</td>
+                  <td class="endt">R$ 9,99</td>
                 </tr>
                 <tr>
                   <td class="total">Total</td>
-                  <td class="total" colspan="2" alt="lucro">R$ 12.909,99 <br><span>[lucro]</span></td>
+                  <td class="total" id="endt">R$ 12.909,99 <br><span>[lucro]</span></td>
                 </tr>
               </table>
-            </div>
         </div>
+        </div>
+        <!-- LINK SIDEBAR -->
+        <div id="mySidenav" class="sidenav">
+          <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+          <a href="#" class="linkside">Limpar dados</a>
+          <a href="#" class="linkside">Cadastro de transações</a>
+          <a href="#" class="linkside">Salvar dados</a>
+        </div>
+
+
+    
+      <script>
+        
+ function openNav() {
+  document.getElementById("mySidenav").style.width = "300px";
+ }
+
+function closeNav() {
+ document.getElementById("mySidenav").style.width = "0";
+ document.getElementById("mySidebar").style.marginRight = "-250";
+ }
+
+//// function openNav() {
+//   document.getElementById("mySidebar").style.width = "250px";
+//   document.getElementById("mySidebar").style.marginLeft = "0px";
+// }
+
+// function closeNav() {
+//   document.getElementById("mySidebar").style.width = "0";
+//   document.getElementById("mySidebar").style.marginLeft= "-250";
+// }
+
+
+
+//         var nome = window.prompt('Bem Vindo ao controle financeiro! Qual seu nome?', '');
+//         while (nome == "" || nome == null)
+//         {
+//   nome = prompt("Não entendi seu nome", "");
+// }
+//         // document.write (nome  + ' está logado')
+//         document.getElementById('name').innerHTML = nome + ' está logado!'
+
+//         if (nome === nome) {
+//           alert('Que Da Hora!! Meu nome também é '+ nome);
+//         }        
+      </script>  
     </body>
 </html>
