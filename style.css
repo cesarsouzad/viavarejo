@@ -133,7 +133,7 @@ span{
 }
 .menu{
     display: none;
-    
+
 }
 #name{
         filter: drop-shadow(2px 2px 2px #002fff);
@@ -149,6 +149,9 @@ span{
 .sidenav{
     display: none;
 }
+table{
+    border-collapse: collapse;
+}
 
 /* FONTE IMPORTADA */
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap');
@@ -156,8 +159,9 @@ span{
 /* RESPONSIVO PARA TABLET */
     @media (max-width: 780px){
         .sidenav {
+            margin-right: -300px;
             height: 100%;
-            width: 0;
+            width: 300px;
             position: fixed;
             z-index: 0.4;
             top: 0;
@@ -242,7 +246,7 @@ span{
             margin-top: 20px;
         }
         form{
-            display: flex;
+            flex-wrap: wrap;
             flex-direction: row;
             justify-content: space-between;
             align-items: center;

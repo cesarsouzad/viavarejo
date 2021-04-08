@@ -7,7 +7,7 @@
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel="icon" href="Ellipse 13.png" type="image/gif" sizes="16x16">
     <link rel='stylesheet' type='text/css' media='screen' href='style.css'>
-    
+    <script type="text/javascript" src="index.js"></script>
 </head>
 <body>
   <!-- CABEÇALHO -->
@@ -15,6 +15,7 @@
     <img class="logo" src="Ellipse 13.png">
     <div class="title">Controle Financeiro</div>
     <div class="linker">
+      <!-- Navegação desktop -->
       <nav>
         <a href="#">Limpar dados</a>
         <a href="#" class="lkbord">Cadastro de transações</a>
@@ -33,29 +34,30 @@
           <!-- DIV FORMULARIO -->
         <div class="box1">
             <h2>Nova Transação</h2>
-            <form method="POST">
+            <form id="formulario" onsubmit="return validacaoForm()">
 
               <div class="formu">  
                 <label>Tipo de Transação</label>
-                <select required>
-                  <option>Compra</option>
-                  <option>Venda</option>
+                <select onchange="cor()">
+                  <option value="0" selected>Selecione</option>
+                  <option value="1">Compra</option>
+                  <option value="2">Venda</option>
                 </select>
               </div>
 
-              <div class="formu" id="namerc">
+              <div class="formu" id="namerc" onkeyup="cor()">
                 <label>Nome da Mercadoria</label>
-                <input placeholder="Mercadoria" type="text" required></input>
+                <input placeholder="Mercadoria" type="text" name="merca" id="merca" autocomplete="off"></input>
               </div>
 
-              <div class="formu" id="valor">
-                <label>Valor</label>
-                <input type="number" placeholder="R$0,00" required></input>
+              <div class="formu" id="valor" onkeyup="cor()">
+                <label >Valor</label>
+                <input type="tel" placeholder="R$0,00" name="val" id="dinheiro" autocomplete="off" maxlength="10"></input>
+              </div>
+              <div class="btn">
+                <button type="submit" onclick="addTransacao()">Adicionar Transação</button>
               </div>
             </form>
-            <div class="btn">
-              <button>Adicionar Transação</button>
-            </div>
         </div>
             <!-- DIV EXTRATO -->
         <div class="box2">
@@ -77,7 +79,7 @@
                   <td>+ Lorem ipsum </td>
                   <td class="endt">R$ 9,99</td>
                 </tr>
-                <tr>
+                <tr style= "border-top: double gray;">
                   <td class="total">Total</td>
                   <td class="total" id="endt">R$ 12.909,99 <br><span>[lucro]</span></td>
                 </tr>
@@ -93,17 +95,9 @@
         </div>
 
 
-    
+  
       <script>
         
- function openNav() {
-  document.getElementById("mySidenav").style.width = "300px";
- }
-
-function closeNav() {
- document.getElementById("mySidenav").style.width = "0";
- document.getElementById("mySidebar").style.marginRight = "-250";
- }
 
 //// function openNav() {
 //   document.getElementById("mySidebar").style.width = "250px";
