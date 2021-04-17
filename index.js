@@ -1,4 +1,4 @@
-window.onload = () => { getdata(); showData();}
+window.onload = () => { getdata(); showData(); calculo();}
 
 
 var produtos = [];
@@ -67,6 +67,7 @@ function validacaoForm() {
 
     addTransacao();
     showData();
+    calculo();
 
  
 
@@ -88,7 +89,6 @@ function limparDados() {
     localStorage.clear();
     var limpo = document.getElementById('corpotabela');
     limpo.innerHTML = ``;
-    console.log(confir)
     }  
     produtos = []
 
@@ -97,6 +97,7 @@ function limparDados() {
 //---função para addicionar no localstorage----------
 function addTransacao() {
     getdata()
+    
     var tipodatransação = document.querySelector('select').value;
 
     if (tipodatransação == "1") {
@@ -114,11 +115,10 @@ localStorage.getItem(produtos);
 produtos.push(novoProduto);
 localStorage.setItem("produtos", JSON.stringify(produtos));
 
-
-
-//form.reset();
 form.reset();
-console.log(produtos)
+somar()
+
+
 };
 //---------------------------------------------------
 
@@ -195,9 +195,33 @@ if (produtos.length == 0) {
 
 //--------variavel igual localstorage se diferente de nulo produto recebe localstorage tratado
 function getdata(){
+    somar()
     var str = localStorage.getItem('produtos');
     if (str != null)
     produtos = JSON.parse(str)
 }
 //-----------------------------------------------------------
 
+function somar(){
+    
+    var total = 0
+    for(let i = 0; i < produtos.length; i++){
+        let valorUm = parseFloat(produtos[i].valor.replace(/\./g, "").replace(/,/g, "."))
+        if(produtos[i].saldo != "+"){
+            valorUm *= -1
+        }
+        total += valorUm
+    }
+    return total    
+}
+
+function calculo(){  
+   var totaltabela = document.getElementById('endt')
+    if (somar() > 0 ){
+        totaltabela.innerHTML =  "R$ " + somar().toLocaleString("pt-BR",) + "<br> [Lucro]"
+        
+    }else {
+        totaltabela.innerHTML = "R$ " + somar().toLocaleString("pt-BR",) + "<br> [Prejuízo]"
+        
+    }
+}
