@@ -21,7 +21,7 @@
       <nav>
         <a href="#" onclick="limparDados();">Limpar dados</a>
         <a href="#" class="lkbord">Cadastro de transações</a>
-        <a href="#">Salvar no servidor</a>
+        <a href="#" onclick="salvaDados ()">Salvar no servidor</a>
       </nav>
     </div>
 
@@ -54,7 +54,7 @@
 
         <div class="formu" id="valor" onkeyup="cor()">
           <label>Valor</label>
-          <input type="text" id="dinheiro" maxlength="12"></input>
+          <input type="text" id="dinheiro" maxlength="14"></input>
         </div>
         <div class="btn">
           <button type="submit">Adicionar Transação</button>
@@ -63,18 +63,18 @@
     </div>
     <!-- DIV EXTRATO -->
     <div class="box2">
-      <h2>Extrato de Transação</h2>
+      <h2>Extrato de Transação</h2> 
       <table id="tabela">
         <thead>
           <th>Mercadoria</th>
           <th></th>
           <th class="endt">Valor</th>
         </thead>
-
+        <tbody id="corpotabela"></tbody>
         <tfoot style="border-top: double gray;">
           <td class="total">Total</td>
           <td style="border: none;"></td>
-          <td class="total" id="endt">R$ 12.909,99 <br><span id="LorP">[lucro]</span></td>
+          <td class="total" id="endt">R$ 0,00 <br><span id="LorP" onclick="soma()">[lucro]</span></td>
         </tfoot>
       </table>
     </div>
@@ -82,7 +82,7 @@
   <!-- LINK SIDEBAR -->
   <div id="mySidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <a href="#" class="linkside">Limpar dados</a>
+    <a href="#" class="linkside" onclick="limparDados();">Limpar dados</a>
     <a href="#" class="linkside">Cadastro de transações</a>
     <a href="#" class="linkside">Salvar dados</a>
   </div>

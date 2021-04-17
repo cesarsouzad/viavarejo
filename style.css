@@ -63,6 +63,7 @@ form{
     margin-left: 40px;
     display: flex;
     flex-direction: column;
+    height: 100%;
 }
 .formu{
     display: inline-grid;
@@ -91,6 +92,7 @@ button{
     border-radius: 3px;
     line-height: 2;
     width: 100%;
+    cursor: pointer;
 }
 button:hover{
     filter: brightness(2);
@@ -204,7 +206,8 @@ table{
         }
         .menu{
             display: flex;
-            cursor:pointer
+            cursor:pointer;
+            width: 40px;
         }
         nav, .linker{
             display: none;
