@@ -1,6 +1,8 @@
+//---- carregamento das funçoes no submit---------------------
 window.onload = () => { getdata(); showData(); calculo();}
 
 
+// variavel global vazia---------------
 var produtos = [];
 
 
@@ -91,7 +93,7 @@ function limparDados() {
     limpo.innerHTML = ``;
     }  
     produtos = []
-
+    calculo()
 };
 
 //---função para addicionar no localstorage----------
@@ -191,7 +193,7 @@ if (produtos.length == 0) {
     `    
 }
 }
-//-----------------------------------------------------------
+//------------------------------------------------------------------------------------------
 
 //--------variavel igual localstorage se diferente de nulo produto recebe localstorage tratado
 function getdata(){
@@ -200,28 +202,73 @@ function getdata(){
     if (str != null)
     produtos = JSON.parse(str)
 }
-//-----------------------------------------------------------
+//--------------------------------------------------------------------------------------------------------
 
+//-----------função para somar os dados valor do local storage-----
 function somar(){
     
     var total = 0
     for(let i = 0; i < produtos.length; i++){
+        //---tratamento do valor do localstorage para numero sem R$ e , -----
         let valorUm = parseFloat(produtos[i].valor.replace(/\./g, "").replace(/,/g, "."))
         if(produtos[i].saldo != "+"){
+            //tratamento com numeros negativos
             valorUm *= -1
         }
         total += valorUm
     }
     return total    
 }
+//------------------------------------------------------------------------------------------------------
 
+//----função para escrever o resultado somar() tratada em moeda com retorno de lucro se maior que 0 ou prejuizo se menor----
 function calculo(){  
    var totaltabela = document.getElementById('endt')
     if (somar() > 0 ){
-        totaltabela.innerHTML =  "R$ " + somar().toLocaleString("pt-BR",) + "<br> [Lucro]"
+        totaltabela.innerHTML =  "R$ " + somar().toLocaleString("pt-BR",) + `<br><span>[Lucro]</span>`
         
     }else {
-        totaltabela.innerHTML = "R$ " + somar().toLocaleString("pt-BR",) + "<br> [Prejuízo]"
+        totaltabela.innerHTML = "R$ " + somar().toLocaleString("pt-BR",) + `<br><span style="color: red;">
+        [Prejuízo]</span>`
         
     }
+};
+//------------------------------------------------------------------------------------------------------------
+
+//---função para pegar no servidor do airtable---trabalhando...
+function getOnAirtable(){
+    var myHeaders = new Headers();
+myHeaders.append("Authorization", "Bearer key2CwkHb0CKumjuM");
+
+var requestOptions = {
+  method: 'GET',
+  headers: myHeaders,
+  redirect: 'follow'
+};
+
+fetch("https://airtable.com/appRNtYLglpPhv2QD/api/docs#curl/table:historico:list", requestOptions)
+  .then(response => response.text())
+  .then(result => console.log(result))
+  .catch(error => console.log('error', error));
 }
+//---------------------------------------------------------------------------------------------------------------
+
+
+//--- função de enviar ao airtable----------trabalhando...
+function postOnAirtable(){
+    var myHeaders = new Headers();
+myHeaders.append("key2CwkHb0CKumjuM", "");
+myHeaders.append("Authorization", "Bearer key2CwkHb0CKumjuM");
+
+var requestOptions = {
+  method: 'POST',
+  headers: myHeaders,
+  redirect: 'follow'
+};
+
+fetch("https://airtable.com/appRNtYLglpPhv2QD/api/docs#curl/table:historico:list", requestOptions)
+  .then(response => response.text())
+  .then(result => console.log(result))
+  .catch(error => console.log('error', error));
+}
+//---------------------------------------------------------------------------------------------------------------
