@@ -228,47 +228,88 @@ function calculo(){
         totaltabela.innerHTML =  "R$ " + somar().toLocaleString("pt-BR",) + `<br><span>[Lucro]</span>`
         
     }else {
-        totaltabela.innerHTML = "R$ " + somar().toLocaleString("pt-BR",) + `<br><span style="color: red;">
-        [Prejuízo]</span>`
-        
+        totaltabela.innerHTML = "R$ " + Math.abs(somar()).toLocaleString("pt-BR",) + `<br><span style="color: red;">
+        [Prejuízo]</span>`  
     }
 };
 //------------------------------------------------------------------------------------------------------------
 
 //---função para pegar no servidor do airtable---trabalhando...
-function getOnAirtable(){
-    var myHeaders = new Headers();
-myHeaders.append("Authorization", "Bearer key2CwkHb0CKumjuM");
 
-var requestOptions = {
-  method: 'GET',
-  headers: myHeaders,
-  redirect: 'follow'
-};
-
-fetch("https://airtable.com/appRNtYLglpPhv2QD/api/docs#curl/table:historico:list", requestOptions)
-  .then(response => response.text())
-  .then(result => console.log(result))
-  .catch(error => console.log('error', error));
-}
 //---------------------------------------------------------------------------------------------------------------
 
 
 //--- função de enviar ao airtable----------trabalhando...
-function postOnAirtable(){
-    var myHeaders = new Headers();
-myHeaders.append("key2CwkHb0CKumjuM", "");
-myHeaders.append("Authorization", "Bearer key2CwkHb0CKumjuM");
+var aluno = "7619";
 
-var requestOptions = {
-  method: 'POST',
-  headers: myHeaders,
-  redirect: 'follow'
+function SaveAirtable(){
+    fetch("https://api.airtable.com/v0/appRNtYLglpPhv2QD/Historico", {
+        headers: {
+            Authorization: "Bearer key2CwkHb0CKumjuM"
+        }
+    })
+    .then(response => response.json())
+    .then(responseJson => {
+        existe = responseJson.records.filter((record) => {
+            if(aluno == record.fields.Aluno){
+                return true
+            }
+            return false
+        })
+        if(existe.length == 0){
+            InsertAirtable()
+        }else{
+            ModifyAirtable(existe[0].id)
+        }
+    } )
+
+
+alert("Dados salvos com Sucesso!")
+
 };
 
-fetch("https://airtable.com/appRNtYLglpPhv2QD/api/docs#curl/table:historico:list", requestOptions)
-  .then(response => response.text())
-  .then(result => console.log(result))
-  .catch(error => console.log('error', error));
-}
+
 //---------------------------------------------------------------------------------------------------------------
+
+function InsertAirtable(){
+    var json = JSON.stringify(produtos)
+    var body = JSON.stringify({
+        "records": [{
+            "id": "rec807BMOaf9xN2ck",
+            "fields":{
+                "Aluno": aluno,
+                "Json": json
+            }
+
+        }]
+    })
+    fetch('https://api.airtable.com/v0/appRNtYLglpPhv2QD/Historico', {
+        method:'POST',
+        headers:{
+            authorization: "Bearer key2CwkHb0CKumjuM",
+            "Content-Type": "application/json"
+        },
+        body:body
+    })
+}
+
+function ModifyAirtable(){
+    var json = JSON.stringify(produtos)
+    var body = JSON.stringify({
+        "records": [{
+            "id": "rec807BMOaf9xN2ck",
+            "fields":{
+                "Aluno": aluno,
+                "Json": json
+            }
+
+        }]
+    })
+    fetch('https://api.airtable.com/v0/appRNtYLglpPhv2QD/Historico', {
+        method:'PATCH',
+        headers:{
+            authorization: "Bearer key2CwkHb0CKumjuM",
+            "Content-Type": "application/json"},
+            body:body
+        })
+}
