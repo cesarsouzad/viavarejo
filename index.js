@@ -94,6 +94,7 @@ function limparDados() {
     }  
     produtos = []
     calculo()
+    showData()
 };
 
 //---função para addicionar no localstorage----------
@@ -225,10 +226,16 @@ function somar(){
 function calculo(){  
    var totaltabela = document.getElementById('endt')
     if (somar() > 0 ){
-        totaltabela.innerHTML =  "R$ " + somar().toLocaleString("pt-BR",) + `<br><span>[Lucro]</span>`
+        totaltabela.innerHTML =  "R$ " + somar().toLocaleString("pt-BR", {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        }) + `<br><span>[Lucro]</span>`
         
     }else {
-        totaltabela.innerHTML = "R$ " + Math.abs(somar()).toLocaleString("pt-BR",) + `<br><span style="color: red;">
+        totaltabela.innerHTML = "R$ " + Math.abs(somar()).toLocaleString("pt-BR",{
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        }) + `<br><span style="color: red;">
         [Prejuízo]</span>`  
     }
 };
