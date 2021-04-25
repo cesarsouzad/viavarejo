@@ -91,10 +91,10 @@ function limparDados() {
     localStorage.clear();
     var limpo = document.getElementById('corpotabela');
     limpo.innerHTML = ``;
-    }  
-    produtos = []
     calculo()
     showData()
+    }  
+    produtos = []
 };
 
 //---função para addicionar no localstorage----------
